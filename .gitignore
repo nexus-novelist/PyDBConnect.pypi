@@ -1,0 +1,6 @@
+.venv/
+
+tests/
+dist/
+build/
+pydbconnect.egg-info
