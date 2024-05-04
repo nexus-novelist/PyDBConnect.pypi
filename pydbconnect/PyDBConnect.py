@@ -3,8 +3,8 @@ from requests import Response
 
 
 class connection:
-    def __init__(self, ip, project, password):
-        self.ip = ip
+    def __init__(self, hostname, project, password):
+        self.hostname = hostname
         self.project = project
         self.password = password
 
@@ -13,14 +13,14 @@ class connection:
         Pings the database server to check if there is a proper connection available
         Returns: Response
         """
-        return requests.get(self.ip)
+        return requests.get(self.hostname)
 
     def get_collections(self) -> list[str]:
         """
         Returns a list of collections for the given project (list[str])
         """
         return requests.get(
-            self.ip + "/get/" + self.project + "/" + self.password
+            self.hostname + "/get/" + self.project + "/" + self.password
         ).content
 
     def get_collection(self, collection) -> dict:
@@ -28,7 +28,13 @@ class connection:
         Returns the data of the given collection (dict)
         """
         return requests.get(
-            self.ip + "/get/" + self.project + "/" + collection + "/" + self.password
+            self.hostname
+            + "/get/"
+            + self.project
+            + "/"
+            + collection
+            + "/"
+            + self.password
         ).content
 
     def get_document(self, collection, document) -> dict:
@@ -36,7 +42,7 @@ class connection:
         Returns the data of the given document (dict)
         """
         return requests.get(
-            self.ip
+            self.hostname
             + "/get/"
             + self.project
             + "/"
@@ -54,7 +60,8 @@ class connection:
         Returns: contents of the new document (dict)
         """
         return requests.post(
-            "/create-document/"
+            self.hostname
+            + "/create-document/"
             + self.project
             + "/"
             + collection
@@ -72,7 +79,8 @@ class connection:
         Returns: contents of the updated document (dict)
         """
         return requests.put(
-            "/update-document/"
+            self.hostname
+            + "/update-document/"
             + self.project
             + "/"
             + collection
@@ -90,7 +98,8 @@ class connection:
         Returns: Response
         """
         return requests.delete(
-            "/delete-document/"
+            self.hostname
+            + "/delete-document/"
             + self.project
             + "/"
             + collection
@@ -107,7 +116,8 @@ class connection:
         Returns: Response
         """
         return requests.post(
-            "/create-collection/"
+            self.hostname
+            + "/create-collection/"
             + self.project
             + "/"
             + collection
@@ -123,7 +133,8 @@ class connection:
         """
 
         return requests.delete(
-            "/delete-collection/"
+            self.hostname
+            + "/delete-collection/"
             + self.project
             + "/"
             + collection
