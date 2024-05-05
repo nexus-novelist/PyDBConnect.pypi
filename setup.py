@@ -4,14 +4,15 @@ import os
 
 here = os.path.abspath(os.path.dirname(__file__))
 
+
+VERSION = "0.0.2"
+DESCRIPTION = "A private database service library."
+# LONG_DESCRIPTION = (
+#    "A package that allows you to build your own database service on your home server!"
+# )
+
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
-
-VERSION = "0.0.1"
-DESCRIPTION = "A private database service library."
-LONG_DESCRIPTION = (
-    "A package that allows you to build your own database service on your home server!"
-)
 
 # Setting up
 setup(
@@ -21,7 +22,7 @@ setup(
     author_email="<proffesionalnoice@gmail.com>",
     description=DESCRIPTION,
     long_description_content_type="text/markdown",
-    long_description=LONG_DESCRIPTION,
+    long_description=long_description,
     packages=find_packages(),
     install_requires=["requests"],
     keywords=["python", "database", "server"],

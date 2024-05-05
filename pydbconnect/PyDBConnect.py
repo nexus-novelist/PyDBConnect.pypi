@@ -15,19 +15,26 @@ class connection:
         """
         return requests.get(self.hostname)
 
-    def get_collections(self) -> list[str]:
+    def get_collections(self) -> list[str] | Response:
         """
         Returns a list of collections for the given project (list[str])
-        """
-        return requests.get(
-            self.hostname + "/get/" + self.project + "/" + self.password
-        ).content
 
-    def get_collection(self, collection) -> dict:
+        If the response errors out it will return a Response object
+        """
+        response = requests.get(
+            self.hostname + "/get/" + self.project + "/" + self.password
+        )
+        if response.status_code != 200:
+            return response
+        return response.content
+
+    def get_collection(self, collection) -> dict | Response:
         """
         Returns the data of the given collection (dict)
+
+        If the response errors out it will return a Response object
         """
-        return requests.get(
+        response = requests.get(
             self.hostname
             + "/get/"
             + self.project
@@ -35,13 +42,18 @@ class connection:
             + collection
             + "/"
             + self.password
-        ).content
+        )
+        if response.status_code != 200:
+            return response
+        return response.content
 
-    def get_document(self, collection, document) -> dict:
+    def get_document(self, collection, document) -> dict | Response:
         """
         Returns the data of the given document (dict)
+
+        If the response errors out it will return a Response object
         """
-        return requests.get(
+        response = requests.get(
             self.hostname
             + "/get/"
             + self.project
@@ -51,15 +63,20 @@ class connection:
             + document
             + "/"
             + self.password
-        ).content
+        )
+        if response.status_code != 200:
+            return response
+        return response.content
 
-    def create_document(self, collection, document_id, content) -> dict:
+    def create_document(self, collection, document_id, content) -> dict | Response:
         """
         Creates a new document in the given collection
 
         Returns: contents of the new document (dict)
+
+        If the response errors out it will return a Response object
         """
-        return requests.post(
+        response = requests.post(
             self.hostname
             + "/create-document/"
             + self.project
@@ -70,15 +87,20 @@ class connection:
             + "/"
             + self.password,
             content,
-        ).content
+        )
+        if response.status_code != 200:
+            return response
+        return response.content
 
-    def update_document(self, collection, document_id, content) -> dict:
+    def update_document(self, collection, document_id, content) -> dict | Response:
         """
         Updates an existing document in the given collection
 
         Returns: contents of the updated document (dict)
+
+        If the response errors out it will return a Response object
         """
-        return requests.put(
+        response = requests.put(
             self.hostname
             + "/update-document/"
             + self.project
@@ -89,7 +111,10 @@ class connection:
             + "/"
             + self.password,
             content,
-        ).content
+        )
+        if response.status_code != 200:
+            return response
+        return response.content
 
     def delete_document(self, collection, document_id) -> Response:
         """
