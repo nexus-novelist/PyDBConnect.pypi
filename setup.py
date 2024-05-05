@@ -1,18 +1,11 @@
 from setuptools import setup, find_packages
-import codecs
-import os
+from pathlib import Path
 
-here = os.path.abspath(os.path.dirname(__file__))
+this_directory = Path(__file__).parent
 
-
-VERSION = "0.0.2"
+VERSION = "0.0.5"
 DESCRIPTION = "A private database service library."
-# LONG_DESCRIPTION = (
-#    "A package that allows you to build your own database service on your home server!"
-# )
-
-with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
-    long_description = "\n" + fh.read()
+LONG_DESCRIPTION = (this_directory / "README.md").read_text()
 
 # Setting up
 setup(
@@ -22,7 +15,7 @@ setup(
     author_email="<proffesionalnoice@gmail.com>",
     description=DESCRIPTION,
     long_description_content_type="text/markdown",
-    long_description=long_description,
+    long_description=LONG_DESCRIPTION,
     packages=find_packages(),
     install_requires=["requests"],
     keywords=["python", "database", "server"],

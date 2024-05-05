@@ -1,7 +1,11 @@
 import requests
+import json
+
 from requests import Response
 
-from utils import decrypt_request_content
+
+def decrypt_request_content(response: Response):
+    return json.loads(response.content.decode(response.encoding))
 
 
 class connection:
