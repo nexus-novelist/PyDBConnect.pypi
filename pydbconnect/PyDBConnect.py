@@ -1,6 +1,8 @@
 import requests
 from requests import Response
 
+from utils import decrypt_request_content
+
 
 class connection:
     def __init__(self, hostname, project, password):
@@ -26,7 +28,7 @@ class connection:
         )
         if response.status_code != 200:
             return response
-        return response.content
+        return decrypt_request_content(response.content)
 
     def get_collection(self, collection) -> dict | Response:
         """
@@ -45,7 +47,7 @@ class connection:
         )
         if response.status_code != 200:
             return response
-        return response.content
+        return decrypt_request_content(response.content)
 
     def get_document(self, collection, document) -> dict | Response:
         """
@@ -66,7 +68,7 @@ class connection:
         )
         if response.status_code != 200:
             return response
-        return response.content
+        return decrypt_request_content(response.content)
 
     def create_document(self, collection, document_id, content) -> dict | Response:
         """
@@ -90,7 +92,7 @@ class connection:
         )
         if response.status_code != 200:
             return response
-        return response.content
+        return decrypt_request_content(response.content)
 
     def update_document(self, collection, document_id, content) -> dict | Response:
         """
@@ -114,7 +116,7 @@ class connection:
         )
         if response.status_code != 200:
             return response
-        return response.content
+        return decrypt_request_content(response.content)
 
     def delete_document(self, collection, document_id) -> Response:
         """
