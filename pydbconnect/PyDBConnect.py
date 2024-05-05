@@ -9,7 +9,7 @@ def decrypt_request_content(response: Response):
 
 
 class connection:
-    def __init__(self, hostname, project, password):
+    def __init__(self, hostname: str, project: str, password: str):
         self.hostname = hostname
         self.project = project
         self.password = password
@@ -34,7 +34,7 @@ class connection:
             return response
         return decrypt_request_content(response)
 
-    def get_collection(self, collection) -> any:
+    def get_collection(self, collection: str) -> any:
         """
         Returns the data of the given collection (dict)
 
@@ -53,7 +53,7 @@ class connection:
             return response
         return decrypt_request_content(response)
 
-    def get_document(self, collection, document) -> any:
+    def get_document(self, collection: str, document: str) -> any:
         """
         Returns the data of the given document (dict)
 
@@ -74,7 +74,7 @@ class connection:
             return response
         return decrypt_request_content(response)
 
-    def create_document(self, collection, document_id, content) -> any:
+    def create_document(self, collection: str, document_id: str, content: dict) -> any:
         """
         Creates a new document in the given collection
 
@@ -92,13 +92,13 @@ class connection:
             + document_id
             + "/"
             + self.password,
-            content,
+            json=content,
         )
         if response.status_code != 200:
             return response
         return decrypt_request_content(response)
 
-    def update_document(self, collection, document_id, content) -> any:
+    def update_document(self, collection: str, document_id: str, content: dict) -> any:
         """
         Updates an existing document in the given collection
 
@@ -116,13 +116,13 @@ class connection:
             + document_id
             + "/"
             + self.password,
-            content,
+            json=content,
         )
         if response.status_code != 200:
             return response
         return decrypt_request_content(response)
 
-    def delete_document(self, collection, document_id) -> Response:
+    def delete_document(self, collection: str, document_id: str) -> Response:
         """
         Deletes document from the collection
 
@@ -140,7 +140,7 @@ class connection:
             + self.password
         )
 
-    def create_collection(self, collection) -> Response:
+    def create_collection(self, collection: str) -> Response:
         """
         Creates a new collection in the given project.
 
@@ -156,7 +156,7 @@ class connection:
             + self.password
         )
 
-    def delete_collection(self, collection) -> Response:
+    def delete_collection(self, collection: str) -> Response:
         """
         Deletes the given collection from the project.
 
