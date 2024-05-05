@@ -21,7 +21,7 @@ class connection:
         """
         return requests.get(self.hostname)
 
-    def get_collections(self) -> list[str] | Response:
+    def get_collections(self) -> any:
         """
         Returns a list of collections for the given project (list[str])
 
@@ -34,7 +34,7 @@ class connection:
             return response
         return decrypt_request_content(response.content)
 
-    def get_collection(self, collection) -> dict | Response:
+    def get_collection(self, collection) -> any:
         """
         Returns the data of the given collection (dict)
 
@@ -53,7 +53,7 @@ class connection:
             return response
         return decrypt_request_content(response.content)
 
-    def get_document(self, collection, document) -> dict | Response:
+    def get_document(self, collection, document) -> any:
         """
         Returns the data of the given document (dict)
 
@@ -74,7 +74,7 @@ class connection:
             return response
         return decrypt_request_content(response.content)
 
-    def create_document(self, collection, document_id, content) -> dict | Response:
+    def create_document(self, collection, document_id, content) -> any:
         """
         Creates a new document in the given collection
 
@@ -98,7 +98,7 @@ class connection:
             return response
         return decrypt_request_content(response.content)
 
-    def update_document(self, collection, document_id, content) -> dict | Response:
+    def update_document(self, collection, document_id, content) -> any:
         """
         Updates an existing document in the given collection
 
