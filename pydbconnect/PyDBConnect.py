@@ -5,7 +5,7 @@ from requests import Response
 
 
 def decrypt_request_content(response: Response):
-    return json.loads(response.content.decode(response.encoding))
+    return json.loads(response.content.decode(response.apparent_encoding))
 
 
 class connection:

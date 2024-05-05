@@ -3,7 +3,7 @@ from pathlib import Path
 
 this_directory = Path(__file__).parent
 
-VERSION = "0.0.7"
+VERSION = "0.0.8"
 DESCRIPTION = "A private database service library."
 LONG_DESCRIPTION = (this_directory / "README.md").read_text()
 
