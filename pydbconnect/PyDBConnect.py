@@ -32,7 +32,7 @@ class connection:
         )
         if response.status_code != 200:
             return response
-        return decrypt_request_content(response.content)
+        return decrypt_request_content(response)
 
     def get_collection(self, collection) -> any:
         """
@@ -51,7 +51,7 @@ class connection:
         )
         if response.status_code != 200:
             return response
-        return decrypt_request_content(response.content)
+        return decrypt_request_content(response)
 
     def get_document(self, collection, document) -> any:
         """
@@ -72,7 +72,7 @@ class connection:
         )
         if response.status_code != 200:
             return response
-        return decrypt_request_content(response.content)
+        return decrypt_request_content(response)
 
     def create_document(self, collection, document_id, content) -> any:
         """
@@ -96,7 +96,7 @@ class connection:
         )
         if response.status_code != 200:
             return response
-        return decrypt_request_content(response.content)
+        return decrypt_request_content(response)
 
     def update_document(self, collection, document_id, content) -> any:
         """
@@ -120,7 +120,7 @@ class connection:
         )
         if response.status_code != 200:
             return response
-        return decrypt_request_content(response.content)
+        return decrypt_request_content(response)
 
     def delete_document(self, collection, document_id) -> Response:
         """
